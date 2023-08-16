@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const TodoItem = ({ title, content }) => {
     return (
         <div className="card m-2">
@@ -9,6 +11,11 @@ const TodoItem = ({ title, content }) => {
             </div>
         </div>
     );
+};
+
+TodoItem.propTypes = {
+    title: PropTypes.string,
+    content: PropTypes.string.isRequired
 };
 
 export default TodoItem;

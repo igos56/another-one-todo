@@ -1,7 +1,7 @@
+import PropTypes from "prop-types";
 import TodoItem from "../todoItem/todoItem";
 
 const TodosList = ({ todos }) => {
-    console.log(todos);
     return (
         <div className="container">
             {todos.map((todo) => (
@@ -9,6 +9,10 @@ const TodosList = ({ todos }) => {
             ))}
         </div>
     );
+};
+
+TodosList.propTypes = {
+    todos: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default TodosList;
