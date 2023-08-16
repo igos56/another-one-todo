@@ -1,5 +1,13 @@
+import TodoItem from "../todoItem/todoItem";
+
 const TodosList = () => {
-    return <h2>todosList Content</h2>;
+    return (
+        <div className="container">
+            <TodoItem />
+            <TodoItem />
+            <TodoItem />
+        </div>
+    );
 };
 
 export default TodosList;
