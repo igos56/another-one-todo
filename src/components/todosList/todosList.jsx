@@ -1,9 +1,16 @@
 import PropTypes from "prop-types";
 import TodoItem from "../todoItem/todoItem";
 
-const TodosList = ({ todos, onTodoItemDelete }) => {
+const TodosList = ({ todos, onTodoItemDelete, onModalOpen }) => {
     return (
         <div className="container">
+            <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={onModalOpen}
+            >
+                Добавить задачу
+            </button>
             {todos.map((todo) => (
                 <TodoItem
                     key={todo.id}
@@ -17,7 +24,8 @@ const TodosList = ({ todos, onTodoItemDelete }) => {
 
 TodosList.propTypes = {
     todos: PropTypes.arrayOf(PropTypes.object).isRequired,
-    onTodoItemDelete: PropTypes.func.isRequired
+    onTodoItemDelete: PropTypes.func.isRequired,
+    onModalOpen: PropTypes.func.isRequired
 };
 
 export default TodosList;
