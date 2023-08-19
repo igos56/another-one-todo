@@ -11,7 +11,6 @@ const App = () => {
     }, []);
 
     const handleTodoItemDelete = (id) => {
-        console.log({id});
         setTodos(todos.filter((todo) => todo.id !== id));
     };
 

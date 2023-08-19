@@ -16,7 +16,8 @@ const TodosList = ({ todos, onTodoItemDelete }) => {
 };
 
 TodosList.propTypes = {
-    todos: PropTypes.arrayOf(PropTypes.object).isRequired
+    todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+    onTodoItemDelete: PropTypes.func.isRequired
 };
 
 export default TodosList;
