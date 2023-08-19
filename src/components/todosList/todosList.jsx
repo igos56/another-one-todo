@@ -1,11 +1,15 @@
 import PropTypes from "prop-types";
 import TodoItem from "../todoItem/todoItem";
 
-const TodosList = ({ todos }) => {
+const TodosList = ({ todos, onTodoItemDelete }) => {
     return (
         <div className="container">
             {todos.map((todo) => (
-                <TodoItem key={todo.id} {...todo} />
+                <TodoItem
+                    key={todo.id}
+                    {...todo}
+                    onTodoItemDelete={onTodoItemDelete}
+                />
             ))}
         </div>
     );

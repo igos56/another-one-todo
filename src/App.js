@@ -10,9 +10,21 @@ const App = () => {
         API.todos.fetchAll().then((todos) => setTodos(todos));
     }, []);
 
+    const handleTodoItemDelete = (id) => {
+        console.log({id});
+        setTodos(todos.filter((todo) => todo.id !== id));
+    };
+
     return (
         <div className="App d-flex justify-content-center">
-            {todos ? <TodosList todos={todos} /> : <Loader />}
+            {todos ? (
+                <TodosList
+                    todos={todos}
+                    onTodoItemDelete={handleTodoItemDelete}
+                />
+            ) : (
+                <Loader />
+            )}
         </div>
     );
 };
