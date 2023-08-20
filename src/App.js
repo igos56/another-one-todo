@@ -8,6 +8,8 @@ import "./App.css";
 const App = () => {
     const [todos, setTodos] = useState();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentInputTitle, setCurrentInputTitle] = useState("");
+    const [currentInputContent, setCurrentInputContent] = useState("");
 
     useEffect(() => {
         API.todos.fetchAll().then((todos) => setTodos(todos));
@@ -19,6 +21,26 @@ const App = () => {
 
     const handleToggleModal = () => setIsModalOpen(!isModalOpen);
 
+    const handleInputTitleChange = (event) => {
+        setCurrentInputTitle(event.target.value);
+    };
+    const handleInputContentChange = (event) => {
+        setCurrentInputContent(event.target.value);
+    };
+
+    const handleCreateTodo = () => {
+        const newTodoItem = {
+            id: "006",
+            title: currentInputTitle,
+            content: currentInputContent
+        };
+
+        setTodos([...todos, newTodoItem]);
+        setCurrentInputTitle("");
+        setCurrentInputContent("");
+        handleToggleModal();
+    };
+
     return (
         <div
             className={
@@ -29,6 +51,11 @@ const App = () => {
             <ModalTaskAdd
                 isModalOpen={isModalOpen}
                 onModalClose={handleToggleModal}
+                onCreateTodo={handleCreateTodo}
+                currentInputTitle={currentInputTitle}
+                currentInputContent={currentInputContent}
+                onInputTitleChange={handleInputTitleChange}
+                onInputContentChange={handleInputContentChange}
             />
             {todos ? (
                 <TodosList

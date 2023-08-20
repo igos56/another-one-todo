@@ -1,6 +1,13 @@
 import PropTypes from "prop-types";
 
-const ModalTaskAdd = ({ isModalOpen, onModalClose }) => {
+const ModalTaskAdd = ({
+    isModalOpen,
+    onCreateTodo,
+    currentInputTitle,
+    currentInputContent,
+    onInputTitleChange,
+    onInputContentChange
+}) => {
     return (
         <div
             className={
@@ -19,6 +26,9 @@ const ModalTaskAdd = ({ isModalOpen, onModalClose }) => {
                         type="text"
                         className="form-control"
                         id="todoTitle"
+                        value={currentInputTitle}
+                        onChange={(event) => onInputTitleChange(event)}
+                        placeholder="Что нужно сделать?"
                     />
                 </div>
                 <div className="mb-3">
@@ -29,12 +39,15 @@ const ModalTaskAdd = ({ isModalOpen, onModalClose }) => {
                         className="form-control"
                         id="todoContent"
                         rows="3"
+                        value={currentInputContent}
+                        placeholder="Какие шаги нужно выполнить на пути к выполнению?"
+                        onChange={(event) => onInputContentChange(event)}
                     ></textarea>
                 </div>
                 <button
                     type="button"
                     className="btn btn-primary"
-                    onClick={onModalClose}
+                    onClick={onCreateTodo}
                 >
                     Создать задачу
                 </button>
@@ -45,7 +58,12 @@ const ModalTaskAdd = ({ isModalOpen, onModalClose }) => {
 
 ModalTaskAdd.propTypes = {
     isModalOpen: PropTypes.bool.isRequired,
-    onModalClose: PropTypes.func.isRequired
+    onModalClose: PropTypes.func.isRequired,
+    onCreateTodo: PropTypes.func.isRequired,
+    currentInputTitle: PropTypes.string.isRequired,
+    currentInputContent: PropTypes.string.isRequired,
+    onInputTitleChange: PropTypes.func.isRequired,
+    onInputContentChange: PropTypes.func.isRequired
 };
 
 export default ModalTaskAdd;
