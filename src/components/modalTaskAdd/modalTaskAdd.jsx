@@ -6,16 +6,23 @@ const ModalTaskAdd = ({
     currentInputTitle,
     currentInputContent,
     onInputTitleChange,
-    onInputContentChange
+    onInputContentChange,
+    onToggleModal
 }) => {
     return (
         <div
             className={
-                "position-absolute" +
+                "black-screen position-absolute" +
                 (isModalOpen
                     ? " d-flex justify-content-center align-items-center top-0 start-0 end-0 bottom-0 bg-secondary z-1 bg-opacity-75"
                     : " invisible")
             }
+            onClick={(event) => {
+                const { target } = event;
+                if (isModalOpen && target.classList.contains("black-screen")) {
+                    onToggleModal();
+                }
+            }}
         >
             <form className="border w-75 p-3 bg-white">
                 <div className="mb-3">
@@ -62,7 +69,8 @@ ModalTaskAdd.propTypes = {
     currentInputTitle: PropTypes.string.isRequired,
     currentInputContent: PropTypes.string.isRequired,
     onInputTitleChange: PropTypes.func.isRequired,
-    onInputContentChange: PropTypes.func.isRequired
+    onInputContentChange: PropTypes.func.isRequired,
+    onToggleModal: PropTypes.func.isRequired
 };
 
 export default ModalTaskAdd;

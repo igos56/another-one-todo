@@ -1,6 +1,19 @@
 import PropTypes from "prop-types";
 
 const SearchInfoBar = ({ count }) => {
+    const formatPhrase = (count) => {
+        const lastChar = Number(count.toString().slice(-1));
+        const lastTwoChar =
+            count > 9 ? Number(count.toString().slice(-2)) : undefined;
+
+        if (count > 4 && count < 11) return "неотложных дел";
+        if ([2, 3, 4].includes(lastChar) && ![12, 13, 14].includes(lastTwoChar))
+            return "неотложных дела";
+        if (lastChar === 1 && lastTwoChar !== 11) return "неотложное дело";
+
+        return "неотложных дел";
+    };
+
     return (
         <nav
             className="navbar mb-2 rounded"
@@ -10,7 +23,7 @@ const SearchInfoBar = ({ count }) => {
                 <h2 className="navbar-brand">
                     {count > 0 ? (
                         <span className="ms-3 text-primary">
-                            В списке {count} неотложных дел
+                            В списке {`${count} ${formatPhrase(count)}`}
                         </span>
                     ) : (
                         <>
@@ -31,7 +44,7 @@ const SearchInfoBar = ({ count }) => {
                         placeholder="Поиск"
                         aria-label="Поиск"
                     />
-                    <button className="btn btn-outline-info" type="submit">
+                    <button className="btn btn-outline-info" type="button">
                         Найти
                     </button>
                 </form>

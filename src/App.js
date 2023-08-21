@@ -21,7 +21,10 @@ const App = () => {
         setTodos(todos.filter((todo) => todo.id !== id));
     };
 
-    const handleToggleModal = () => setIsModalOpen(!isModalOpen);
+    const handleToggleModal = () => {
+        setIsModalOpen(!isModalOpen);
+        clearModalInputs();
+    };
 
     const handleInputTitleChange = (event) => {
         setCurrentInputTitle(event.target.value);
@@ -38,9 +41,13 @@ const App = () => {
         };
 
         setTodos([...todos, newTodoItem]);
+        clearModalInputs();
+        handleToggleModal();
+    };
+
+    const clearModalInputs = () => {
         setCurrentInputTitle("");
         setCurrentInputContent("");
-        handleToggleModal();
     };
 
     const todosCount = todos ? todos.length : 0;
@@ -57,6 +64,7 @@ const App = () => {
                         currentInputContent={currentInputContent}
                         onInputTitleChange={handleInputTitleChange}
                         onInputContentChange={handleInputContentChange}
+                        onToggleModal={handleToggleModal}
                     />
                     {todos ? (
                         <TodosList
