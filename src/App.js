@@ -4,6 +4,7 @@ import generateId from "./utils/generateId";
 import TodosList from "./components/todosList/todosList";
 import Loader from "./components/loader/loader";
 import ModalTaskAdd from "./components/modalTaskAdd/modalTaskAdd";
+import SearchInfoBar from "./components/searchInfoBar/searchInfoBar";
 import "./App.css";
 
 const App = () => {
@@ -42,30 +43,32 @@ const App = () => {
         handleToggleModal();
     };
 
+    const todosCount = todos ? todos.length : 0;
+
     return (
-        <div
-            className={
-                "App d-flex flex-column align-items-center justify-content-center" +
-                (isModalOpen ? " modal-open" : "")
-            }
-        >
-            <ModalTaskAdd
-                isModalOpen={isModalOpen}
-                onCreateTodo={handleCreateTodo}
-                currentInputTitle={currentInputTitle}
-                currentInputContent={currentInputContent}
-                onInputTitleChange={handleInputTitleChange}
-                onInputContentChange={handleInputContentChange}
-            />
-            {todos ? (
-                <TodosList
-                    todos={todos}
-                    onTodoItemDelete={handleTodoItemDelete}
-                    onModalOpen={handleToggleModal}
-                />
-            ) : (
-                <Loader />
-            )}
+        <div className={"App" + (isModalOpen ? " modal-open" : "")}>
+            <div className="container">
+                <SearchInfoBar count={todosCount} />
+                <div className="d-flex flex-column align-items-center justify-content-center">
+                    <ModalTaskAdd
+                        isModalOpen={isModalOpen}
+                        onCreateTodo={handleCreateTodo}
+                        currentInputTitle={currentInputTitle}
+                        currentInputContent={currentInputContent}
+                        onInputTitleChange={handleInputTitleChange}
+                        onInputContentChange={handleInputContentChange}
+                    />
+                    {todos ? (
+                        <TodosList
+                            todos={todos}
+                            onTodoItemDelete={handleTodoItemDelete}
+                            onModalOpen={handleToggleModal}
+                        />
+                    ) : (
+                        <Loader />
+                    )}
+                </div>
+            </div>
         </div>
     );
 };

@@ -6,7 +6,7 @@ const TodosList = ({ todos, onTodoItemDelete, onModalOpen }) => {
         <div className="container">
             <button
                 type="button"
-                className="btn btn-secondary"
+                className="btn btn-outline-secondary"
                 onClick={onModalOpen}
             >
                 Добавить задачу
