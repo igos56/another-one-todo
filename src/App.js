@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "./api";
+import generateId from "./utils/generateId";
 import TodosList from "./components/todosList/todosList";
 import Loader from "./components/loader/loader";
 import ModalTaskAdd from "./components/modalTaskAdd/modalTaskAdd";
@@ -30,7 +31,7 @@ const App = () => {
 
     const handleCreateTodo = () => {
         const newTodoItem = {
-            id: "006",
+            id: generateId(),
             title: currentInputTitle,
             content: currentInputContent
         };
@@ -50,7 +51,6 @@ const App = () => {
         >
             <ModalTaskAdd
                 isModalOpen={isModalOpen}
-                onModalClose={handleToggleModal}
                 onCreateTodo={handleCreateTodo}
                 currentInputTitle={currentInputTitle}
                 currentInputContent={currentInputContent}

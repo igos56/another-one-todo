@@ -58,7 +58,6 @@ const ModalTaskAdd = ({
 
 ModalTaskAdd.propTypes = {
     isModalOpen: PropTypes.bool.isRequired,
-    onModalClose: PropTypes.func.isRequired,
     onCreateTodo: PropTypes.func.isRequired,
     currentInputTitle: PropTypes.string.isRequired,
     currentInputContent: PropTypes.string.isRequired,
